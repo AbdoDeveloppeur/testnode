@@ -1,24 +1,33 @@
 import express from "express"; // ** import expressjs
 const app = express(); // ** define app from expressjs
-import doten from "dotenv"; // ** import dotenv environment variable
-doten.config({ path: "Config/Config.env" }); // **  configuration of Dotenv
+import dotenv from "dotenv"; // ** import dotenv environment variable
+dotenv.config({ path: "Config/Config.env" }); // **  configuration of Dotenv
 import { ApiError } from "./utils/ApiError.js";
 import { globaleError } from "./middleware/errorGlobalMiddleware.js";
 import morgan from "morgan"; // ** logger http request
 import connectDB from "./Config/Db.js"; // ** import DbConnect
-import UsersRoute from "./Routes/UsersRoute.js"; // ** Route Users
+// ** ======> Route
 import CategoryRoute from "./Routes/CategoryRoute.js"; // ** Route Users
+import SubCategoryRoute from "./Routes/SubCategoryRoute.js"; // ** Route Users
+import BrandRoute from "./Routes/BrandRoute.js"
+import ProductRoute from "./Routes/ProductRoute.js"
+
 
 // ** -----Connect----api-----with-----DB
 connectDB();
-app.use(express.json()); // String TO JSON
+app.use(express.json()); 
+
 // **---Midlware------of------Morgan
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-// **======> Mount_Route <=========
-app.use("/users", UsersRoute);
-app.use("/category", CategoryRoute);
+// **===============> Mount_Route <====================
+app.use("/api/category/", CategoryRoute);
+app.use("/api/subcategory", SubCategoryRoute);
+app.use("/api/brands", BrandRoute);
+app.use("/api/products",ProductRoute );
+
+
 
 // **  =========> Catch_Route_undefined <==========
 

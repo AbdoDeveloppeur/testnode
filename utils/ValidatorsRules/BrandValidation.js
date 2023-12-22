@@ -1,7 +1,7 @@
 import { check } from "express-validator";
 import { validatorMiddleware } from "../../middleware/ValidatorMiddleware.js";
 
-export const CreateCategoryValidator = [
+export const CreateBrandValidator = [
   check("name")
     .notEmpty()
     .withMessage("Name id Required")
@@ -13,13 +13,13 @@ export const CreateCategoryValidator = [
 ];
 
 
-export const getCategoryValidator = [
-  check("id").isMongoId().withMessage("Invalid Category Id Format"),
+export const getBrandValidator = [
+  check("id").isMongoId().withMessage("Invalid Brand Id Format"),
   validatorMiddleware,
 ];
 
-export const PutCategoryValidator = [
-  check("id").isMongoId().withMessage("Invalid Category Id"),
+export const PutBrandValidator = [
+  check("id").isMongoId().withMessage("Invalid Brand Id"),
   check("name")
     .isString()
     .withMessage("Name must be a string")
@@ -30,7 +30,7 @@ export const PutCategoryValidator = [
   validatorMiddleware,
 ];
 
-export const DeleteCategoryValidator = [
-  check("id").isMongoId().withMessage("Invalid Category Id Format"),
+export const DeleteBrandValidator = [
+  check("id").isMongoId().withMessage("Invalid Brand Id Format"),
   validatorMiddleware,
 ];

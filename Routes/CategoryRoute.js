@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+import SubCategoryRoute from "../Routes/SubCategoryRoute.js";
 import {
   CreateCategoryValidator,
   DeleteCategoryValidator,
@@ -14,11 +15,15 @@ import {
   deleteCategoryById,
 } from "../Controller/CategoryController.js";
 
-router.route("/api").post(CreateCategoryValidator,CreateCategory).get(getCategories);
+router.use("/:categoryId/subcategory", SubCategoryRoute);
+router
+  .route("/api")
+  .post(CreateCategoryValidator, CreateCategory)
+  .get(getCategories);
 router
   .route("/api/:id")
   .get(getCategoryValidator, getCategoryById)
   .put(PutCategoryValidator, updateCategoryById)
-  .delete(DeleteCategoryValidator,deleteCategoryById);
+  .delete(DeleteCategoryValidator, deleteCategoryById);
 
 export default router;

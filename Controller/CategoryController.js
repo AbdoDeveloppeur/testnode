@@ -85,7 +85,7 @@ export const updateCategoryById = asyncHandler(async (req, res, next) => {
 });
 
 //** =========> Delete_Specefic_Category  <========
-export const deleteCategoryById = asyncHandler(async (req, re, next) => {
+export const deleteCategoryById = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
 
   const deletedCategory = await CategoryModel.findByIdAndDelete(id);

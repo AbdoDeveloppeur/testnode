@@ -6,8 +6,8 @@ const CategorySchema = new Schema(
       type: String,
       required: [true, "Category is required"],
       unique: [true, "Most be unique"],
-      minlegth: [4, "min length is 3"],
-      maxlength: [8, "max length is 8"],
+      minlegth: [3, "min length is 3"],
+      maxlength: [15, "max length is 8"],
     },
     image: String,
     slug: {
